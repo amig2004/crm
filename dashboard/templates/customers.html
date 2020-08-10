@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+
+{% block title %} CRM - Customer list {% endblock %}
+
+{% block content %}
+    <ul>
+            <li>Id</li>
+            <li>First name</li>
+            <li>Last name</li>
+            <li>Acc number</li>
+            <li>Actions</li>
+    
+        {% for cst in customer_list %}
+                <li> ------------------- </li>
+                <li>{{ cst.id }}</li>
+                <li>{{ cst.first_name }}</li>
+                <li>{{ cst.last_name }}</li>
+                <li>{{ cst.account_number }}</li>
+                <li>More</li>
+    
+    
+        {% endfor %}
+        <li> ------------------- </li>
+    </ul>
+{% endblock %}
