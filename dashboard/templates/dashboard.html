@@ -2,24 +2,93 @@
 
 {% block title %} CRM - Dashboard {% endblock %}
 
+
 {% block content %}
-    <ul>
-            <li>Id</li>
-            <li>First name</li>
-            <li>Last name</li>
-            <li>Acc number</li>
-            <li>Actions</li>
-    
+<h1>Dashboard</h1>
+<h2>Recent customers</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Account number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for cst in customer_list %}
-                <li> ------------------- </li>
-                <li>{{ cst.id }}</li>
-                <li>{{ cst.first_name }}</li>
-                <li>{{ cst.last_name }}</li>
-                <li>{{ cst.account_number }}</li>
-                <li>More</li>
-    
-    
+        <tr>
+            <th>{{ cst.id }}</th>
+            <th>{{ cst.first_name }}</th>
+            <th>{{ cst.last_name }}</th>
+            <th>{{ cst.account_number }}</th>
+            <th>
+                <a href="{% url 'customer_details' cst.id %}">More>></a>
+            </th>
+        </tr>
         {% endfor %}
-        <li> ------------------- </li>
-    </ul>
+    </tbody>
+</table>
+<a href="{% url 'customers_list' %}">Customers list</a>
+<hr />
+
+
+<h2>Recent payments</h2>
+<h4>{{payments_number}} accepted payments in last 30 days</h4>
+<h4>{{income}}PLN income in the last 30 days</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for payment in payments_list %}
+        <tr>
+            <th>{{ payment.id }}</th>
+            <th>{{ payment.user }}</th>
+            <th>{{ payment.amount }}</th>
+            <th>{{ payment.title }}</th>
+            <th><a href="{% url 'payment_details' payment.id %}">More>></a></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'payment_list' %}">Payments list</a>
+<hr />
+
+
+
+<h2>Recent tasks</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Customer</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Annotations</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks_list %}
+        <tr>
+            <th>{{ task.id }}</th>
+            <th>{{ task.user }}</th>
+            <th>{{ task.name }}</th>
+            <th>{{ task.status }}</th>
+            <th>{{ task.annotations }}</th>
+            <th>More</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}

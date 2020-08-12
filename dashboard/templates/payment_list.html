@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+
+{% block title %} Payments  {% endblock %}
+
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for payment in payments_list %}
+        <tr>
+            <th>{{ payment.id }}</th>
+            <th>{{ payment.user }}</th>
+            <th>{{ payment.amount }}</th>
+            <th>{{ payment.title }}</th>
+            <th><a href="{% url 'payment_details' payment.id %}">More>></a></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
